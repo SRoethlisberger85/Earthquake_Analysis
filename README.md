@@ -14,7 +14,7 @@ This repository contains an in-depth analysis of earthquake frequency and severi
     - Conclusion
     - References
     - Team Members
-    -   Stephanie Roethlisberger
-    -   Yelimi Lee
-    -   Jack Hayes
-    -   Devin Streeter
+    -   -Stephanie Roethlisberger
+    -   -Yelimi Lee
+    -   -Jack Hayes
+    -   -Devin Streeter
