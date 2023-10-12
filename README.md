@@ -1,5 +1,6 @@
 # Earthquake_Analysis
-This repository contains an in-depth analysis of earthquake frequency and severity in particular areas and how the aftermath affects the surrounding environment and community.
+
+This project aims to illustrate an in-depth analysis of earthquake frequency and severity in particular areas and show how the aftermath affects the surrounding environment and community.
 
 - Project Overview
     - Usage and installation instructions of libraries/tools that are used
