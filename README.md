@@ -19,3 +19,7 @@ This project aims to illustrate an in-depth analysis of earthquake frequency and
     -   -Yelimi Lee
     -   -Jack Hayes
     -   -Devin Streeter
+
+
+
+suicide_data.csv from WHO (https://www.who.int/data/gho/data/themes/mental-health/suicide-rates)
