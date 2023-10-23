@@ -1,12 +1,15 @@
+let eqData;
+
 // Load the data.
 d3.csv("../earthquake_suicide_df.csv").then(function(data) {
 
-    let eqData = createCountries(data);
-    init(eqData);
+    createCountries(data);
+    init();
 
 });
 
 function createCountries(data) {
+    
     eqData = {"Afghanistan":{'year':[], 'mag': [], 'rate': []}}
     country = "Afghanistan"
         
@@ -28,38 +31,43 @@ function createCountries(data) {
         }
     }
 
-    return eqData
 }
 
-// provides default value to show users. Currently set to line graph
-function init(eqData) {
+// provides default value to show users
+function init() {
 
-    // console.log(eqData)
-    let var1 = [
-        {
-            x: eqData['Afghanistan']['year'].map(parseFloat),
-            y: eqData['Afghanistan']['rate'].map(parseFloat),
+    console.log(eqData)
+    let var1 = {
+            x: eqData['Haiti']['year'].map(parseFloat),
+            y: eqData['Haiti']['rate'].map(parseFloat),
+            name: 'Suicides per Year (per 100k)'
+        };
+    let var2 = {
+            x: eqData['Haiti']['year'].map(parseFloat),
+            y: eqData['Haiti']['mag'].map(parseFloat),
+            name: 'Earthquakes',
             mode: 'markers',
             type: 'scatter'
         }
-    ];
 
-    console.log(`x-axis: ${var1[0].x}`)
-    console.log(`y-axis: ${var1[0].y}`)
     let layout = {
-        height: 600,
+        title: {text: 'Haiti'},
+        xaxis: {text: 'Year'},
+        yaxis: {text:'Suicides per year (per 100k)'},
+        height: 500,
         width: 800,
         xaxis: {
             range: [1995, 2023]
         },
         yaxis: {
-            range: [0, 10]
+            range: [0, 20]
         }
     };
 
-    let data = var1;
+    let data = [var1, var2];
 
     Plotly.newPlot('map', data, layout);
+
 }
 
 // selDataset is ID for dropdown menu in html
@@ -71,864 +79,39 @@ function getData(){
 
     let dataset = dropDownMenu.property("value");
 
-    let data = [];
+    countryData = eqData[dataset]
+    years = countryData['year'].map(parseFloat)
+    rates = countryData['rate'].map(parseFloat)
+    mags = countryData['mag'].map(parseFloat)
 
-    if (dataset === 'Afghanistan'){
-        data = [
-            {
-                x: eqData['Afghanistan']['year'].map(parseFloat),
-                y: eqData['Afghanistan']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Albania'){
-        data = [
-            {
-                x: eqData['Albania']['year'].map(parseFloat),
-                y: eqData['Albania']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Algeria'){
-        data = [
-            {
-                x: eqData['Algeria']['year'].map(parseFloat),
-                y: eqData['Algeria']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Angola'){
-        data = [
-            {
-                x: eqData['Angola']['year'].map(parseFloat),
-                y: eqData['Angola']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Antigua and Barbuda'){
-        data = [
-            {
-                x: eqData['Antigua and Barbuda']['year'].map(parseFloat),
-                y: eqData['Antigua and Barbuda']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Argentina'){
-        data = [
-            {
-                x: eqData['Argentina']['year'].map(parseFloat),
-                y: eqData['Argentina']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Armenia'){
-        data = [
-            {
-                x: eqData['Armenia']['year'].map(parseFloat),
-                y: eqData['Armenia']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Australia'){
-        data = [
-            {
-                x: eqData['Australia']['year'].map(parseFloat),
-                y: eqData['Australia']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Austria'){
-        data = [
-            {
-                x: eqData['Austria']['year'].map(parseFloat),
-                y: eqData['Austria']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Azerbaijan'){
-        data = [
-            {
-                x: eqData['Azerbaijan']['year'].map(parseFloat),
-                y: eqData['Azerbaijan']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Bahamas'){
-        data = [
-            {
-                x: eqData['Bahamas']['year'].map(parseFloat),
-                y: eqData['Bahamas']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Bangladesh'){
-        data = [
-            {
-                x: eqData['Bangladesh']['year'].map(parseFloat),
-                y: eqData['Bangladesh']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Barbados'){
-        data = [
-            {
-                x: eqData['Barbados']['year'].map(parseFloat),
-                y: eqData['Barbados']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Belgium'){
-        data = [
-            {
-                x: eqData['Belgium']['year'].map(parseFloat),
-                y: eqData['Belgium']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Benin'){
-        data = [
-            {
-                x: eqData['Benin']['year'].map(parseFloat),
-                y: eqData['Benin']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Bhutan'){
-        data = [
-            {
-                x: eqData['Bhutan']['year'].map(parseFloat),
-                y: eqData['Bhutan']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Bolivia'){
-        data = [
-            {
-                x: eqData['Bolivia (Plurinational State of)']['year'].map(parseFloat),
-                y: eqData['Bolivia (Plurinational State of)']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Bosnia and Herzegovina'){
-        data = [
-            {
-                x: eqData['Bosnia and Herzegovina']['year'].map(parseFloat),
-                y: eqData['Bosnia and Herzegovina']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Botswana'){
-        data = [
-            {
-                x: eqData['Botswana']['year'].map(parseFloat),
-                y: eqData['Botswana']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Brazil'){
-        data = [
-            {
-                x: eqData['Brazil']['year'].map(parseFloat),
-                y: eqData['Brazil']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Bulgaria'){
-        data = [
-            {
-                x: eqData['Bulgaria']['year'].map(parseFloat),
-                y: eqData['Bulgaria']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Cabo Verde'){
-        data = [
-            {
-                x: eqData['Cabo Verde']['year'].map(parseFloat),
-                y: eqData['Cabo Verde']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Cameroon'){
-        data = [
-            {
-                x: eqData['Cameroon']['year'].map(parseFloat),
-                y: eqData['Cameroon']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Canada'){
-        data = [
-            {
-                x: eqData['Canada']['year'].map(parseFloat),
-                y: eqData['Canada']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'CanCentral African Republicada'){
-        data = [
-            {
-                x: eqData['Central African Republic']['year'].map(parseFloat),
-                y: eqData['Central African Republic']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Chile'){
-        data = [
-            {
-                x: eqData['Chile']['year'].map(parseFloat),
-                y: eqData['Chile']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'China'){
-        data = [
-            {
-                x: eqData['China']['year'].map(parseFloat),
-                y: eqData['China']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Colombia'){
-        data = [
-            {
-                x: eqData['Colombia']['year'].map(parseFloat),
-                y: eqData['Colombia']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Comoros'){
-        data = [
-            {
-                x: eqData['Comoros']['year'].map(parseFloat),
-                y: eqData['Comoros']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Congo'){
-        data = [
-            {
-                x: eqData['Congo']['year'].map(parseFloat),
-                y: eqData['Congo']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Costa Rica'){
-        data = [
-            {
-                x: eqData['Costa Rica']['year'].map(parseFloat),
-                y: eqData['Costa Rica']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Croatia'){
-        data = [
-            {
-                x: eqData['Croatia']['year'].map(parseFloat),
-                y: eqData['Croatia']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Cuba'){
-        data = [
-            {
-                x: eqData['Cuba']['year'].map(parseFloat),
-                y: eqData['Cuba']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Cyprus'){
-        data = [
-            {
-                x: eqData['Cyprus']['year'].map(parseFloat),
-                y: eqData['Cyprus']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Czechia'){
-        data = [
-            {
-                x: eqData['Czechia']['year'].map(parseFloat),
-                y: eqData['Czechia']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'North Korea'){
-        data = [
-            {
-                x: eqData["Democratic People's Republic of Korea"]['year'].map(parseFloat),
-                y: eqData["Democratic People's Republic of Korea"]['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Denmark'){
-        data = [
-            {
-                x: eqData['Denmark']['year'].map(parseFloat),
-                y: eqData['Denmark']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Djibouti'){
-        data = [
-            {
-                x: eqData['Djibouti']['year'].map(parseFloat),
-                y: eqData['Djibouti']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Dominican Republic'){
-        data = [
-            {
-                x: eqData['Dominican Republic']['year'].map(parseFloat),
-                y: eqData['Dominican Republic']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Ecuador'){
-        data = [
-            {
-                x: eqData['Ecuador']['year'].map(parseFloat),
-                y: eqData['Ecuador']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Egypt'){
-        data = [
-            {
-                x: eqData['Egypt']['year'].map(parseFloat),
-                y: eqData['Egypt']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'El Salvador'){
-        data = [
-            {
-                x: eqData['El Salvador']['year'].map(parseFloat),
-                y: eqData['El Salvador']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Equatorial Guinea'){
-        data = [
-            {
-                x: eqData['Equatorial Guinea']['year'].map(parseFloat),
-                y: eqData['Equatorial Guinea']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Eritrea'){
-        data = [
-            {
-                x: eqData['Eritrea']['year'].map(parseFloat),
-                y: eqData['Eritrea']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Eswatini'){
-        data = [
-            {
-                x: eqData['Eswatini']['year'].map(parseFloat),
-                y: eqData['Eswatini']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Ethiopia'){
-        data = [
-            {
-                x: eqData['Ethiopia']['year'].map(parseFloat),
-                y: eqData['Ethiopia']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Fiji'){
-        data = [
-            {
-                x: eqData['Fiji']['year'].map(parseFloat),
-                y: eqData['Fiji']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'France'){
-        data = [
-            {
-                x: eqData['France']['year'].map(parseFloat),
-                y: eqData['France']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Gabon'){
-        data = [
-            {
-                x: eqData['Gabon']['year'].map(parseFloat),
-                y: eqData['Gabon']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Germany'){
-        data = [
-            {
-                x: eqData['Germany']['year'].map(parseFloat),
-                y: eqData['Germany']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Ghana'){
-        data = [
-            {
-                x: eqData['Ghana']['year'].map(parseFloat),
-                y: eqData['Ghana']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Greece'){
-        data = [
-            {
-                x: eqData['Greece']['year'].map(parseFloat),
-                y: eqData['Greece']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Grenada'){
-        data = [
-            {
-                x: eqData['Grenada']['year'].map(parseFloat),
-                y: eqData['Grenada']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Guatemala'){
-        data = [
-            {
-                x: eqData['Guatemala']['year'].map(parseFloat),
-                y: eqData['Guatemala']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Guinea'){
-        data = [
-            {
-                x: eqData['Guinea']['year'].map(parseFloat),
-                y: eqData['Guinea']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Guyana'){
-        data = [
-            {
-                x: eqData['Guyana']['year'].map(parseFloat),
-                y: eqData['Guyana']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Haiti'){
-        data = [
-            {
-                x: eqData['Haiti']['year'].map(parseFloat),
-                y: eqData['Haiti']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Honduras'){
-        data = [
-            {
-                x: eqData['Honduras']['year'].map(parseFloat),
-                y: eqData['Honduras']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Hungary'){
-        data = [
-            {
-                x: eqData['Hungary']['year'].map(parseFloat),
-                y: eqData['Hungary']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Iceland'){
-        data = [
-            {
-                x: eqData['Iceland']['year'].map(parseFloat),
-                y: eqData['Iceland']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'India'){
-        data = [
-            {
-                x: eqData['India']['year'].map(parseFloat),
-                y: eqData['India']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Indonesia'){
-        data = [
-            {
-                x: eqData['Indonesia']['year'].map(parseFloat),
-                y: eqData['Indonesia']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Iran'){
-        data = [
-            {
-                x: eqData['Iran (Islamic Republic of)']['year'].map(parseFloat),
-                y: eqData['Iran (Islamic Republic of)']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Iraq'){
-        data = [
-            {
-                x: eqData['Iraq']['year'].map(parseFloat),
-                y: eqData['Iraq']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Ireland'){
-        data = [
-            {
-                x: eqData['Ireland']['year'].map(parseFloat),
-                y: eqData['Ireland']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Israel'){
-        data = [
-            {
-                x: eqData['Israel']['year'].map(parseFloat),
-                y: eqData['Israel']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Italy'){
-        data = [
-            {
-                x: eqData['Italy']['year'].map(parseFloat),
-                y: eqData['Italy']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Jamaica'){
-        data = [
-            {
-                x: eqData['Jamaica']['year'].map(parseFloat),
-                y: eqData['Jamaica']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Japan'){
-        data = [
-            {
-                x: eqData['Japan']['year'].map(parseFloat),
-                y: eqData['Japan']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Jordan'){
-        data = [
-            {
-                x: eqData['Jordan']['year'].map(parseFloat),
-                y: eqData['Jordan']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Kazakhstan'){
-        data = [
-            {
-                x: eqData['Kazakhstan']['year'].map(parseFloat),
-                y: eqData['Kazakhstan']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Kenya'){
-        data = [
-            {
-                x: eqData['Kenya']['year'].map(parseFloat),
-                y: eqData['Kenya']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Kiributi'){
-        data = [
-            {
-                x: eqData['Kiributi']['year'].map(parseFloat),
-                y: eqData['Kiributi']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Kuwait'){
-        data = [
-            {
-                x: eqData['Kuwait']['year'].map(parseFloat),
-                y: eqData['Kuwait']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Kyrgystan'){
-        data = [
-            {
-                x: eqData['Kyrgystan']['year'].map(parseFloat),
-                y: eqData['Kyrgystan']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Lebanon'){
-        data = [
-            {
-                x: eqData['Lebanon']['year'].map(parseFloat),
-                y: eqData['Lebanon']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Lesotho'){
-        data = [
-            {
-                x: eqData['Lesotho']['year'].map(parseFloat),
-                y: eqData['Lesotho']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Libya'){
-        data = [
-            {
-                x: eqData['Libya']['year'].map(parseFloat),
-                y: eqData['Libya']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Madagascar'){
-        data = [
-            {
-                x: eqData['Madagascar']['year'].map(parseFloat),
-                y: eqData['Madagascar']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Malawi'){
-        data = [
-            {
-                x: eqData['Malawi']['year'].map(parseFloat),
-                y: eqData['Malawi']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Malaysia'){
-        data = [
-            {
-                x: eqData['Malaysia']['year'].map(parseFloat),
-                y: eqData['Malaysia']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Maldives'){
-        data = [
-            {
-                x: eqData['Maldives']['year'].map(parseFloat),
-                y: eqData['Maldives']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Malta'){
-        data = [
-            {
-                x: eqData['Malta']['year'].map(parseFloat),
-                y: eqData['Malta']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Mauritania'){
-        data = [
-            {
-                x: eqData['Mauritania']['year'].map(parseFloat),
-                y: eqData['Mauritania']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Mauritius'){
-        data = [
-            {
-                x: eqData['Mauritius']['year'].map(parseFloat),
-                y: eqData['Mauritius']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Mexico'){
-        data = [
-            {
-                x: eqData['Mexico']['year'].map(parseFloat),
-                y: eqData['Mexico']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Micronesia'){
-        data = [
-            {
-                x: eqData['Micronesia (Federated States of)']['year'].map(parseFloat),
-                y: eqData['Micronesia (Federated States of)']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Mongolia'){
-        data = [
-            {
-                x: eqData['Mongolia']['year'].map(parseFloat),
-                y: eqData['Mongolia']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Montenegro'){
-        data = [
-            {
-                x: eqData['Montenegro']['year'].map(parseFloat),
-                y: eqData['Montenegro']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Morocco'){
-        data = [
-            {
-                x: eqData['Morocco']['year'].map(parseFloat),
-                y: eqData['Morocco']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Mozambique'){
-        data = [
-            {
-                x: eqData['Mozambique']['year'].map(parseFloat),
-                y: eqData['Mozambique']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Myanmar'){
-        data = [
-            {
-                x: eqData['Myanmar']['year'].map(parseFloat),
-                y: eqData['Myanmar']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Namibia'){
-        data = [
-            {
-                x: eqData['Namibia']['year'].map(parseFloat),
-                y: eqData['Namibia']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Nepal'){
-        data = [
-            {
-                x: eqData['Nepal']['year'].map(parseFloat),
-                y: eqData['Nepal']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    } else if (dataset === 'Netherlands'){
-        data = [
-            {
-                x: eqData['Netherlands']['year'].map(parseFloat),
-                y: eqData['Netherlands']['rate'].map(parseFloat),
-                mode: 'markers',
-                type: 'scatter'
-            }
-        ];
-    }
+    let data = [
+        {
+            x: years,
+            y: rates,
+            name: 'Suicides per Year (per 100k)'
+        },
+        {
+            x: years,
+            y: mags,
+            mode: 'markers',
+            type: 'scatter',
+            name: 'Earthquakes on Richter Scale'
+        }
+    ];
 
-    Plotly.restyle("pie", "values", data); // works for [data] too
+    let layout = {
+        title: {text: dataset},
+        xaxis: {text: 'Year'},
+        yaxis: {text:'Suicides per year (per 100k)'},
+        height: 500,
+        width: 800,
+        xaxis: {
+            range: [1995, 2023]
+        },
+        yaxis: {
+            range: [0, 20]
+        }
+    };
+
+    Plotly.newPlot("map", data, layout);
 }
