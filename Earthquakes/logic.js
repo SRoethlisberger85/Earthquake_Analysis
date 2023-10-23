@@ -49,8 +49,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         cell.textContent = cellText;
                         row.appendChild(cell);
 
-                        if (i > 0 && index === 15) {
-                            // Highlight the top 5 earthquakes by changing the color
+                        if (i > 0 && index === 5) {
+                            // Highlight the top 5
                             if (i <= 5) {
                                 cell.style.backgroundColor = 'red';
                             }
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
                 }
 
-                // Create CircleMarkers with descriptions and a subtle plugin
+                // Create CircleMarkers with descriptions
                 for (let i = 0; i < earthquakes.length; i++) {
                     const earthquake = earthquakes[i];
                     const { latitude, longitude, description, injuries, mag, damage, deaths } = earthquake;
@@ -75,9 +75,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         fillOpacity: 0.6,
                     }).addTo(map);
 
-                    // Add an event listener to open a popup with Chart.js chart when clicked
+                    // open a popup with Chart.js chart when clicked
                     circle.on('click', function () {
-                        // Create a popup with a Chart.js chart
+                        // popup with a Chart.js chart
                         const popup = L.popup()
                             .setLatLng(circle.getLatLng())
                             .openOn(map);
