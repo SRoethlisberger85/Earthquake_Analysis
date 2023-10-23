@@ -9,12 +9,20 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/bullet.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- <script src="main.js"></script> -->
 </head>
 <body>
     <div>
     </div>
 
     <h1>Earthquakes Impact Analysis</h1>
+
+    <div id="csvTable"></div>
+    <div id="gdpContainer"></div>
+    <Table id="csvTable"></table>
+    <Table id="gdpContainer"></table>
+
+    <script src="logic.js"></script>
 
     <select id="scriptSelector">
         <option value="logic">Mortality</option>
@@ -26,7 +34,7 @@
     <div id="map" style="height: 1000px;"></div>
     <table id="csvTable"></table>
     <table id="gdpContainer"></table>
-    <script src="main.js"></script> <!-- Include the main script -->
+    <script src="main.js"></script>
 </body>
 </html>
 
