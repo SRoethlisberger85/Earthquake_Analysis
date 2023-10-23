@@ -1,24 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Earthquake GDP Impact Visualization</title>
+    <title>Earthquakes Impact Analysis</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <script src="https://d3js.org/d3.v6.min.js"></script>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <style>
-        #map { height: 360px; }
-    </style>
+  - <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- D3 library -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/bullet.js"></script>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
+    <div>
 
-<div id="map"></div>
-<select id="countrySelector">
-    <option value="CHL">Chile</option>
-    <option value="JPN">Japan</option>
-</select>
-<svg id="timeSeries" width="960" height="500"></svg>
+    </div>
 
-<script src="logic2.js"></script>
+    <h1>Earthquakes Impact Analysis</h1>
+    <div id="map" style="height: 1000px;"></div>
+
+    <!-- <div id="csvTable"></div>
+    <div id="gdpContainer"></div> -->
+    <!-- <div id="scatter"></div> -->
+    <Table id="csvTable"></table>
+    <Table id="gdpContainer"></table>
+
+    <!-- <script src="logic.js"></script> -->
+    
+    <select id="selDataset">
+        <option value="Afghanistan">DataSet1</option>
+        <option value="Algeria">DataSet2</option>
+    </select>
+
+    <script src="logic1.js"></script>
+        
 </body>
 </html>
+
+
+
