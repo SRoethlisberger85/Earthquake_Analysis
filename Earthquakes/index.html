@@ -4,8 +4,12 @@
     <title>Earthquakes Impact Analysis</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
   - <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- D3 library -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/bullet.js"></script>
 
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
@@ -15,18 +19,22 @@
     </div>
 
     <h1>Earthquakes Impact Analysis</h1>
-    <div id="map" style="height: 400px;"></div>
-    <table id="csvTable">
-        <!-- Table content will be added here dynamically -->
-    </table>
-    <!-- <script src="logic.js"></script> -->
-    
+    <div id="map" style="height: 1000px;"></div>
+
+    <!-- <div id="csvTable"></div>
+    <div id="gdpContainer"></div> -->
+    <!-- <div id="scatter"></div> -->
+    <Table id="csvTable"></table>
+    <Table id="gdpContainer"></table>
+
+    <script src="logic.js"></script>
+    <!-- <script src="logic1.js"></script> -->
+
     <select id="selDataset">
         <option value="Afghanistan">DataSet1</option>
         <option value="Algeria">DataSet2</option>
     </select>
-    
-    <script src="logic1.js"></script>
+        
 </body>
 </html>
 
