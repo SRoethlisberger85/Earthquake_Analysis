@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Earthquakes Impact Analysis</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/bullet.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div>
+    </div>
+
+    <h1>Earthquakes Impact Analysis</h1>
+
+    <select id="scriptSelector">
+        <option value="logic">Mortality</option>
+        <option value="logic1">Suicides</option>
+        <option value="logic2">GDP</option>
+    </select>
+
+
+    <div id="map" style="height: 1000px;"></div>
+    <table id="csvTable"></table>
+    <table id="gdpContainer"></table>
+    <script src="main.js"></script> <!-- Include the main script -->
+</body>
+</html>
+
