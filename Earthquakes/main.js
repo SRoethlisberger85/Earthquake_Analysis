@@ -190,7 +190,7 @@ d3.csv("../earthquake_suicide_df.csv").then(function(data) {
     createCountries(data);
     init();
 
-});
+}); 
 
 function createCountries(data) {
     
@@ -231,21 +231,21 @@ function init() {
             y: eqData['Haiti']['mag'].map(parseFloat),
             name: 'Earthquakes',
             mode: 'markers',
-            type: 'scatter'
+            type: 'scatter',
+            yaxis: 'y2'
         }
 
     let layout = {
         title: {text: 'Haiti'},
-        xaxis: {text: 'Year'},
-        yaxis: {text:'Suicides per year (per 100k)'},
-        height: 500,
-        width: 800,
         xaxis: {
-            range: [1995, 2023]
+            text: 'Year',
+            range: [1995, 2023]},
+        yaxis: {text:'Suicides per year (per 100k)'},
+        yaxis2: {
+            title: 'Earthquake Magnitude',
+            overlaying: 'y',
+            side: 'right'
         },
-        yaxis: {
-            range: [0, 20]
-        }
     };
 
     let data = [var1, var2];
@@ -277,24 +277,26 @@ function getData(){
         {
             x: years,
             y: mags,
+            name: 'Earthquake Magnitude',
             mode: 'markers',
             type: 'scatter',
-            name: 'Earthquakes on Richter Scale'
+            yaxis: 'y2'
         }
     ];
 
     let layout = {
-        title: {text: dataset},
-        xaxis: {text: 'Year'},
-        yaxis: {text:'Suicides per year (per 100k)'},
-        height: 500,
-        width: 800,
+        title: {text: `Suicides and Earthquakes in ${dataset} by Year`},
         xaxis: {
-            range: [1995, 2023]
+            title: 'Year', 
+            range: [1995, 2023]},
+        yaxis: {title:'Suicides per year (per 100k)'},
+        yaxis2: {
+            title: 'Earthquake Magnitude',
+            overlaying: 'y',
+            side: 'right'
         },
-        yaxis: {
-            range: [0, 20]
-        }
+        height: 800,
+        width: 1500,
     };
 
     Plotly.newPlot("map", data, layout);
