@@ -1,39 +1,45 @@
 CREATE TABLE suicide_data (
-    Location VARCHAR(255),      
-    PeriodType VARCHAR(255),   
-    Period INT,              
-    IsLatestYear BIT,        
-    Dim1Type VARCHAR(255)      
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Location VARCHAR(255),
+    Year INT,
+    Mag DECIMAL(5,2),
+    SuicideRatePer100k DECIMAL(5,2)
 );
 
 CREATE TABLE EarthquakeData (
-    Time TIMESTAMP,          
-    Location Name VARCHAR(255)
-    Country VARCHAR(255),      
-    Magnitude DECIMAL(5,2),  
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Time TIMESTAMP,
+    LocationName VARCHAR(255),
+    Country VARCHAR(255),
+    Magnitude DECIMAL(5,2),
     Deaths INT,
     Injuries INT,
     Damage DECIMAL(5,2),
-    Year INT        
-    Geometry GEOMETRY        
+    Year INT,
+    Geometry GEOMETRY
 );
 
 CREATE TABLE GDPData (
-    Country VARCHAR(255),
-    Year INT,                  
-    GDP DECIMAL(15, 2),        
-    GDPPctChange DECIMAL(5, 2) 
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Location VARCHAR(255),
+    Year INT,
+    Value DECIMAL(15, 2)
+);
+
+CREATE TABLE MasterLocationYear (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Location VARCHAR(255),
+    Year INT
 );
 
 ALTER TABLE suicide_data
-ADD Year INT;
+ADD COLUMN LocationYearID INT,
+ADD FOREIGN KEY (LocationYearID) REFERENCES MasterLocationYear(ID);
 
-ALTER TABLE suicide_data
-ADD CONSTRAINT FK_Earthquake_Year
-FOREIGN KEY (Year)
-REFERENCES EarthquakeData (Year);
+ALTER TABLE EarthquakeData
+ADD COLUMN LocationYearID INT,
+ADD FOREIGN KEY (LocationYearID) REFERENCES MasterLocationYear(ID);
 
-ALTER TABLE suicide_data
-ADD CONSTRAINT FK_GDP_Year
-FOREIGN KEY (Year)
-REFERENCES GDPData (Year);
+ALTER TABLE GDPData
+ADD COLUMN LocationYearID INT,
+ADD FOREIGN KEY (LocationYearID) REFERENCES MasterLocationYear(ID);
