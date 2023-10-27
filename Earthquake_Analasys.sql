@@ -8,9 +8,13 @@ CREATE TABLE suicide_data (
 
 CREATE TABLE EarthquakeData (
     Time TIMESTAMP,          
-    Place VARCHAR(255),      
+    Location Name VARCHAR(255)
+    Country VARCHAR(255),      
     Magnitude DECIMAL(5,2),  
-    Type VARCHAR(50),        
+    Deaths INT,
+    Injuries INT,
+    Damage DECIMAL(5,2),
+    Year INT        
     Geometry GEOMETRY        
 );
 
