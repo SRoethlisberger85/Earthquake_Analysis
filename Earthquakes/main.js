@@ -186,10 +186,9 @@ function SuicideScript() {
 
 // Load the data.
 d3.csv("../earthquake_suicide_df.csv").then(function(data) {
-
     createCountries(data);
     init();
-
+    populateCountryDropdown();
 }); 
 
 function createCountries(data) {
@@ -256,6 +255,19 @@ function init() {
 
 // selDataset is ID for dropdown menu in html
 d3.selectAll("#selDataset").on("change", getData);
+
+function populateCountryDropdown(){
+    var dropdown = document.getElementById("selDataset");
+    dropdown.style.display='';
+    console.log(eqData);
+    for(var country in eqData){
+        var op = document.createElement('option');
+        op.value = country;
+        op.text = country;
+        dropdown.append(op);
+    }
+}
+
 
 function getData(){
 
@@ -410,6 +422,9 @@ function GDPScript() {
 }
 
 function executeScript(scriptName) {
+    var dropdown = document.getElementById("selDataset");
+    dropdown.style.display='none';
+
     switch (scriptName) {
     case 'logic':
         MortalityScript();
