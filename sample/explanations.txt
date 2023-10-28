@@ -1,0 +1,8 @@
+The Flask API serves an HTML page at the root URL and provides a JSON API at /api/data that fetches data from an SQLite database.
+
+The SQLite database stores your data. You can replace SQLite with another database if you prefer.
+
+The HTML/CSS provides the structure and style of your webpage.
+
+The JavaScript fetches data from your API and uses D3.js to visualize it.
+

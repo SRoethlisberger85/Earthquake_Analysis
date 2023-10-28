@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Earthquakes Impact Analysis</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <script src="https://d3js.org/d3.v7.min.js"></script> -->
+    <script src="{{ url_for('static', filename='d3.v7.min.js') }}"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/bullet.js"></script>
+</head>
+<body>
+    <h1>Earthquakes Impact Analysis</h1>
+    <div id="map" style="height: 1000px;"></div>
+    <table id="csvTable"></table>
+    <div id="gdpContainer"></div>
+
+    <select id="scriptSelector">
+        <option value="logic">Mortality</option>
+        <option value="logic1">Suicides</option>
+        <option value="logic2">GDP</option>
+    </select>
+
+    <select id="selDataset">
+        <option value="Haiti">Haiti</option>
+        <option value="Chile">Chile</option>
+        <option value="Japan">Japan</option>
+    </select>
+
+    <div id="dropdownContainer"></div>
+    <div id="chartContainer"></div>
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+
+</body>
+</html>
