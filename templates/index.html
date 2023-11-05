@@ -1,28 +1,33 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Earthquakes Impact Analysis</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="path/to/highcharts.css">
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- <script src="https://d3js.org/d3.v7.min.js"></script> -->
-    <script src="{{ url_for('static', filename='d3.v7.min.js') }}"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/bullet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="{{ url_for('static', filename='d3.v7.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
 </head>
 <body>
     <h1>Earthquakes Impact Analysis</h1>
-    <div id="map" style="height: 1000px;"></div>
-    <table id="csvTable"></table>
-    <div id="gdpContainer"></div>
+    <div id="map" style="width: 1500px; height: 1000px;"></div>
 
-    <select id="scriptSelector">
-        <option value="logic">Mortality</option>
-        <option value="logic1">Suicides</option>
-        <option value="logic2">GDP</option>
+    <label for="scriptSelector">Choose an Analysis</label>
+    <select id="scriptSelector" name="scriptSelector">
+        <option value="Mortality">Mortality</option>
+        <option value="Suicides">Suicides</option>
+        <option value="GDP">GDP</option>
     </select>
 
-    <select id="selDataset">
+    <label for="selDataset">Choose a Dataset:</label>
+    <select id="selDataset" name="selDataset">
         <option value="Haiti">Haiti</option>
         <option value="Chile">Chile</option>
         <option value="Japan">Japan</option>
@@ -32,6 +37,5 @@
     <div id="chartContainer"></div>
 
     <script src="{{ url_for('static', filename='main.js') }}"></script>
-
 </body>
 </html>
